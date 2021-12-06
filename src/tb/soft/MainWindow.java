@@ -2,6 +2,8 @@ package tb.soft;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
@@ -31,7 +33,7 @@ public class MainWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(380, 380);
 
-        JPanel contentPane = new JPanel();
+        Panel contentPane = new Panel();
 
         contentPane.setBounds(0,0,360,360);
         setContentPane(contentPane);
@@ -44,7 +46,7 @@ public class MainWindow extends JFrame {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                if(e.getX() > 0) { //strefa bezbieczna z lewej strony
+                if(e.getX() > 5) { //strefa bezbieczna z lewej strony
                     Random random = new Random();
                     run.setLocation(random.nextInt(250), random.nextInt(250));
                 }
@@ -53,12 +55,12 @@ public class MainWindow extends JFrame {
         run.setBounds(70, 140, 90, 23);
         contentPane.add(run);
 
-        reset.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
+        reset.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 run.setLocation(70,140);
             }
         });
+
         reset.setBounds(200, 140, 90, 23);
         contentPane.add(reset);
     }
