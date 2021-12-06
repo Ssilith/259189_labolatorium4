@@ -11,7 +11,7 @@ public class Panel extends JPanel implements MouseInputListener, KeyListener {
 
     Circle cr = null;
     Square sq = null;
-    int o_key = 0, k_key = 0;
+    int mouseX = -1, mouseY = -1;
 
     public Panel() {
         setSize(380,380);
@@ -47,32 +47,29 @@ public class Panel extends JPanel implements MouseInputListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_K)
-            k_key = 1;
-        if(e.getKeyCode() == KeyEvent.VK_O)
-            o_key = 1;
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        o_key = 0;
-        k_key = 0;
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        if(o_key == 1) {
-            cr = new Circle(e.getX(),e.getY());
-            repaint();
-        }
-        if(k_key == 1){
-            sq = new Square(e.getX(),e.getY());
-            repaint();
+        if(mouseX >= 0 && mouseX >= 0){
+            if(e.getKeyCode() == KeyEvent.VK_K){
+                sq = new Square(mouseX,mouseY);
+                repaint();
+            }
+            if(e.getKeyCode() == KeyEvent.VK_O){
+                cr = new Circle(mouseX,mouseY);
+                repaint();
+            }
         }
     }
+
+    @Override
+    public void keyReleased(KeyEvent e) {    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        mouseX = e.getX();
+        mouseY = e.getY();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {    }
 
     @Override
     public void mouseReleased(MouseEvent e) {    }
