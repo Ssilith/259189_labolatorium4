@@ -30,12 +30,12 @@ public class Panel extends JPanel implements MouseInputListener, KeyListener {
         try {
             if(cr != null){
                 g2d.setColor(Color.BLUE);
-                cr.drawCircle(g2d);
+                cr.draw(g2d);
             }
 
             if(sq != null){
                 g2d.setColor(Color.GREEN);
-                sq.drawSquare(g2d);
+                sq.draw(g2d);
             }
         } finally {
             g2d.dispose();

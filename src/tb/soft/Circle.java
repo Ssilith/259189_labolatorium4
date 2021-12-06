@@ -1,18 +1,16 @@
 package tb.soft;
 
-import java.awt.*;
+import java.awt.Graphics2D;
 
-public class Circle { //dziedziczenie po klasie abstrakcyjnej
+public class Circle extends Shape {
     private final int r = 40;
-    private final int x;
-    private final int y;
 
     public Circle(int x, int y){
-        this.x = x;
-        this.y = y;
+        super(x,y);
     }
 
-    protected void drawCircle(Graphics2D g2d){
+    @Override
+    public void draw(Graphics2D g2d) {
         g2d.fillOval(x,y,r,r);
     }
 }
